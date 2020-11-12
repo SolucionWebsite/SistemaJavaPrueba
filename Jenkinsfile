@@ -16,7 +16,6 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testeando sistema con Junit'
-                junit 'SistemaJavaPrueba/Junitest.xml'
             }
         }
         stage('Ejecutar') {
