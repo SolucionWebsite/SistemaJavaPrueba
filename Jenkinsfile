@@ -1,13 +1,25 @@
 pipeline {
     agent any
+
     stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/SolucionWebsite/SistemaJavaPrueba.git'
+            }
+        }
         stage('Build') {
             steps {
-                sh 'echo "Hello World"'
-                git url: 'https://github.com/SolucionWebsite/SistemaJavaPrueba.git'
-                def appVersion = version()
-                if (appVersion) {
-                    echo "Building version ${appVersion}"
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
             }
         }
     }
