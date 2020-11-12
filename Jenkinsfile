@@ -1,25 +1,28 @@
 pipeline {
     agent any
-
     stages {
-        stage('Checkout version') {
+        stage('Consultar') {
             steps {
+                echo 'Consultando cambios en el repositorio'
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/SolucionWebsite/SistemaJavaPrueba.git']]])
             }
         }
-        stage('Build') {
+        stage('Clonar') {
             steps {
-                echo 'Building..'
+                echo 'Clonando repositorio GIT'
+                git 'https://github.com/SolucionWebsite/SistemaJavaPrueba.git'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                echo 'Testeando sistema con Junit'
+                junit 'SistemaJavaPrueba/Junitest.xml'
             }
         }
-        stage('Deploy') {
+        stage('Ejecutar') {
             steps {
-                echo 'Deploying....'
+                echo 'Ejecutando repositorio GIT'
+                git push 'https://github.com/SolucionWebsite/SistemaJavaPrueba.git'
             }
         }
     }
