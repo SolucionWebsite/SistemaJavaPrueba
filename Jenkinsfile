@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Checkout version') {
             steps {
-                git 'https://github.com/SolucionWebsite/SistemaJavaPrueba.git'
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/SolucionWebsite/SistemaJavaPrueba.git']]])
             }
         }
         stage('Build') {
