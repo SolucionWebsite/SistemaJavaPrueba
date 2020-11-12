@@ -22,7 +22,6 @@ pipeline {
         stage('Ejecutar') {
             steps {
                 echo 'Ejecutando repositorio GIT'
-                git push 'https://github.com/SolucionWebsite/SistemaJavaPrueba.git'
             }
         }
     }
